@@ -1,0 +1,47 @@
+﻿<Properties StartupConfiguration="{722214F9-A059-449A-9AB0-1D13F58AE7B7}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.MemoriseCards PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MemoriseCards/wwwroot/lib/jquery/dist/jquery.js">
+    <Files>
+      <File FileName="MemoriseCards/appsettings.json" Line="1" Column="1" />
+      <File FileName="MemoriseCards/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="MemoriseCards/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="MemoriseCards/wwwroot/lib/jquery/dist/jquery.js" Line="150" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MemoriseCards" expanded="True">
+            <Node name="MemoriseCards" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="lib" expanded="True">
+                  <Node name="jquery" expanded="True">
+                    <Node name="dist" expanded="True">
+                      <Node name="jquery.js" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>
