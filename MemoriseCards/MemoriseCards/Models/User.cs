@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MemoriseCards.Models
 {
-    public class UserModel
+    public class User
     {
         [Key]
         public int Id { get; set; }
@@ -35,11 +35,11 @@ namespace MemoriseCards.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public List<DeckModel> Decks { get; set; }
+        public List<Deck> Decks { get; set; }
 
-        public UserModel() { }
+        public User() { }
 
-        public UserModel(string username, string email, string firstName, string lastName)
+        public User(string username, string email, string firstName, string lastName)
         {
             Username = username;
             Email = email;

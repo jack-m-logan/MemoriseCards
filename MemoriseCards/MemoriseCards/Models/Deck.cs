@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MemoriseCards.Models
 {
-    public class DeckModel
+    public class Deck
     {
         [Key]
         public int Id { get; set; }
@@ -13,6 +13,9 @@ namespace MemoriseCards.Models
         [StringLength(255)]
         public string Name { get; set; }
 
+        [Required]
+        public List<Card> Cards { get; set; }
+
         [StringLength(255)]
         public string Notes { get; set; }
 
@@ -20,16 +23,19 @@ namespace MemoriseCards.Models
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public UserModel User { get; set; }
+        public User User { get; set; }
 
-        public DeckModel() { }
-
-        public DeckModel(int id, string name, int userId, string notes = null)
+        public Deck()
         {
-            Id = id;
-            Name = name;
-            UserId = userId;
-            Notes = notes;
+            Cards = new List<Card>();
         }
+
+        //public Deck(int id, string name, int userId, string notes = null)
+        //{
+        //    Id = id;
+        //    Name = name;
+        //    UserId = userId;
+        //    Notes = notes;
+        //}
     }
 }

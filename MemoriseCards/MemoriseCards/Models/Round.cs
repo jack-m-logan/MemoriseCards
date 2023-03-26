@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MemoriseCards.Models
 {
-	public class RoundModel
+	public class Round
 	{
 		[Key]
 		public int Id { get; set; }
@@ -17,15 +17,15 @@ namespace MemoriseCards.Models
         public int RoundNumber { get; set; }
 
         [ForeignKey("DeckId")]
-        public DeckModel Deck { get; set; }
+        public Deck Deck { get; set; }
 
-        public ICollection<ScoreModel> Scores { get; set; }
+        public ICollection<Score> Scores { get; set; }
 
-        public RoundModel()
+        public Round()
 		{
 		}
 
-		public RoundModel(int id, int deckId, int roundNumber)
+		public Round(int id, int deckId, int roundNumber)
 		{
 			Id = id;
 			DeckId = deckId;

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MemoriseCards.Models
 {
-    public class CardModel
+    public class Card
     {
         [Key]
         public int Id { get; set; }
@@ -13,11 +13,12 @@ namespace MemoriseCards.Models
         public string Suit { get; set; }
 
         [Required]
-        public int Rank { get; set; }
+        [StringLength(10)]
+        public string Rank { get; set; }
 
         public float TotalCardScore { get; set; }
 
-        public CardModel(int id, string suit, int rank)
+        public Card(int id, string suit, string rank)
         {
             Id = id;
             Suit = suit;

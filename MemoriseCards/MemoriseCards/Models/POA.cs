@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MemoriseCards.Models
 {
-    public class POAModel
+    public class POA
     {
         [Key]
         public int Id { get; set; }
@@ -25,11 +25,11 @@ namespace MemoriseCards.Models
         public string Action { get; set; }
 
         [ForeignKey("CardID")]
-        public CardModel Card { get; set; }
+        public Card Card { get; set; }
 
-        public POAModel() { }
+        public POA() { }
 
-        public POAModel(int id, int cardId, string person, string Object, string action)
+        public POA(int id, int cardId, string person, string Object, string action)
         {
             Id = id;
             CardId = cardId;

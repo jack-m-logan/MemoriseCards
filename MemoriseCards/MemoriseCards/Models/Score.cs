@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MemoriseCards.Models
 {
-	public class ScoreModel
+	public class Score
 	{
 		[Key]
 		public int Id { get; set; }
@@ -23,16 +23,16 @@ namespace MemoriseCards.Models
 		public int TotalScore { get; set; }
 
 		[ForeignKey("RoundId")]
-		public RoundModel Round { get; set; }
+		public Round Round { get; set; }
 
 		[ForeignKey("UserId")]
-		public UserModel User { get; set; }
+		public User User { get; set; }
 
-		public ScoreModel()
+		public Score()
 		{
 		}
 
-		public ScoreModel(int id, int roundId, DateTime date)
+		public Score(int id, int roundId, DateTime date)
 		{
 			Id = id;
 			RoundId = roundId;
