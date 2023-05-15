@@ -18,6 +18,8 @@ namespace MemoriseCards.Models
 
         public float TotalCardScore { get; set; }
 
+        public int OriginalPosition { get; set; } 
+
         public Card(int id, string suit, string rank)
         {
             Id = id;

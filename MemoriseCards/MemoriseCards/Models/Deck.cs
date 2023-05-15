@@ -9,33 +9,34 @@ namespace MemoriseCards.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
         public List<Card> Cards { get; set; }
 
         [StringLength(255)]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
-        [Required]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
 
-        public Deck()
+        public Deck(string name, int id)
         {
             Cards = new List<Card>();
+            Name = name;
+            Id = id;
         }
 
-        //public Deck(int id, string name, int userId, string notes = null)
-        //{
-        //    Id = id;
-        //    Name = name;
-        //    UserId = userId;
-        //    Notes = notes;
-        //}
+        public List<int> Select(Func<Card, int> selector)
+        {
+            List<int> result = new List<int>();
+            foreach (var card in Cards)
+            {
+                result.Add(selector(card));
+            }
+            return result;
+        }
     }
 }
