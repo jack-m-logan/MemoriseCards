@@ -64,8 +64,13 @@ namespace MemoriseCards.Data
                 entity.Property(e => e.Id).HasColumnName("Id").IsRequired().ValueGeneratedOnAdd();
                 entity.Property(e => e.Suit).HasColumnName("Suit").IsRequired().HasMaxLength(10);
                 entity.Property(e => e.Rank).HasColumnName("Rank").IsRequired().HasMaxLength(10);
+                entity.Property(e => e.POAId).HasColumnName("POAId").HasMaxLength(255);
                 entity.Property(e => e.TotalCardScore).HasColumnName("TotalCardScore");
                 entity.HasIndex(e => new { e.Id, e.Suit, e.Rank }).IsUnique();
+
+                entity.HasOne(e => e.POA)
+                      .WithOne()
+                      .HasForeignKey<Card>(e => e.POAId);
             });
 
             modelBuilder.Entity<Deck>(entity =>
