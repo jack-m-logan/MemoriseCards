@@ -18,18 +18,15 @@ namespace MemoriseCards.Models
         {
             _context = context;
             reviewPileService = new ReviewCardsService();
-
         }
 
         public Deck CreateNewDeck(string name)
         {
-            int maxCardId = GetMaxId(_context, "Card");
-            _currentCardId = maxCardId + 1;
-
             int maxDeckId = GetMaxId(_context, "Deck");
             _currentDeckId = maxDeckId + 1;
 
-            var deck = new Deck(name, _currentDeckId);
+            var deck = new Deck(name);
+
             _context.Deck.Add(deck);
 
             var suits = new[] { "Hearts", "Diamonds", "Clubs", "Spades" };
@@ -41,12 +38,10 @@ namespace MemoriseCards.Models
             {
                 foreach (var rank in ranks)
                 {
-                    var card = new Card(_currentCardId, suit, rank);
+                    var card = new Card(suit, rank);
                     card.OriginalPosition = position++;
                     deck.Cards.Add(card);
                     _context.Card.Add(card);
-
-                    _currentCardId++;
                 }
             }
 
@@ -103,7 +98,11 @@ namespace MemoriseCards.Models
 
             AddCardToReviewPile(card);
 
-            deck.Cards.Remove(card); // Remove the drawn card from the list of cards in the deck
+            deck.Cards.Remove(card);
+
+            _context.Card.Remove(card);
+
+            _context.SaveChanges();
 
             return card;
         }

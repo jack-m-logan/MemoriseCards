@@ -16,13 +16,16 @@ namespace MemoriseCards.Models
         [StringLength(10)]
         public string Rank { get; set; }
 
+        public POA? POA { get; set; }
+
+        public int? POAId { get; set; } 
+
         public float TotalCardScore { get; set; }
 
-        public int OriginalPosition { get; set; } 
+        public int OriginalPosition { get; set; }
 
-        public Card(int id, string suit, string rank)
+        public Card(string suit, string rank)
         {
-            Id = id;
             Suit = suit;
             Rank = rank;
         }

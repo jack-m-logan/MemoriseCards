@@ -22,11 +22,10 @@ namespace MemoriseCards.Models
         [ForeignKey("UserId")]
         public User? User { get; set; }
 
-        public Deck(string name, int id)
+        public Deck(string name)
         {
             Cards = new List<Card>();
             Name = name;
-            Id = id;
         }
 
         public List<int> Select(Func<Card, int> selector)

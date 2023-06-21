@@ -7,6 +7,7 @@ namespace MemoriseCards.Models
     public class POA
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -24,14 +25,13 @@ namespace MemoriseCards.Models
         [StringLength(255)]
         public string Action { get; set; }
 
-        [ForeignKey("CardID")]
+        [ForeignKey("CardId")]
         public Card Card { get; set; }
 
         public POA() { }
 
-        public POA(int id, int cardId, string person, string Object, string action)
+        public POA(int cardId, string person, string Object, string action)
         {
-            Id = id;
             CardId = cardId;
             Person = person;
             this.Object = Object;
