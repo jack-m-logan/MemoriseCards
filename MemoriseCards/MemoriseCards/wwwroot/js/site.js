@@ -1,5 +1,29 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const aboutBtn = $("#aboutBtn");
+const titleBanner = $("#titleBanner");
 
-// Write your JavaScript code.
+$(document).ready(function () {
+    const aboutDialog = $("#aboutDialog");
+    aboutDialog.removeClass("hidden");
+});
 
+$("#closeAboutBtn").click(() => {
+    $("#aboutDialog").addClass("hidden");
+    $("#overlay").removeClass("fixed");
+    aboutBtn.removeClass("bg-zinc-500");
+    titleBanner.removeClass("hidden");
+});
+
+$("#aboutBtn").click(() => {
+    $("#aboutDialog").removeClass("hidden");
+    $("#overlay").toggleClass("fixed");
+    aboutBtn.toggleClass("bg-zinc-500");
+    titleBanner.addClass("hidden");
+});
+
+$("#matrixBtn").click(() => {
+    $("#matrixBtn").toggleClass("bg-zinc-500");
+});
+
+$("#practiceBtn").click(() => {
+    $("#practiceBtn").toggleClass("bg-zinc-500");
+});
