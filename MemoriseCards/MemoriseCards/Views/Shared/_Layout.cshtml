@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MemoriseCards</title>
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
-    @*<link rel="stylesheet" href="~/MemoriseCards.styles.css" asp-append-version="true" />*@
     <link rel="shortcut icon" type="image/png" href="~/images/playing-card-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +16,23 @@
             <nav class="contents font-semibold text-sm lg:text-base text-lg">
                 <ul class="pl-3 flex justify-center items-center md:justify-start md:space-x-4">
                     <li class="p-3 lg:p-5 xl:p-8">
-                        <button id="aboutBtn" type="button" class="text-white border border-gray-300 rounded-lg px-2 py-1 bg-zinc-500">
+                        <button id="aboutBtn" type="button" class="text-zinc border border-gray-300 rounded-lg px-2 py-1 bg-zinc-600 hover:bg-zinc-400">
                             <span>About</span>
                         </button>
                     </li>
                     <li class="p-3 lg:p-5 xl:p-8">
-                        <button id="matrixBtn" type="button" class="text-white border border-gray-300 rounded-lg px-2 py-1">
+                        <button id="matrixBtn" type="button" class="text-zinc border border-gray-300 rounded-lg px-2 py-1 hover:bg-zinc-400">
                             <span>Card Matrix</span>
                         </button>
+                        <div id="matrixDropdown" class="hidden absolute mt-px border border-gray-300 rounded-lg">
+                            <ul class="flex flex-col">
+                                <li class="flex-grow px-2 py-1 text-zinc rounded-t-lg hover:bg-zinc-600"><a href="#">New Deck</a></li>
+                                <li class="flex-grow px-2 py-1 text-zinc rounded-b-lg hover:bg-zinc-600"><a href="#">Edit Deck</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="p-3 lg:p-5 xl:p-8">
-                        <button id="practiceBtn" type="button" class="text-white border border-gray-300 rounded-lg px-2 py-1">
+                        <button id="practiceBtn" type="button" class="text-zinc border border-gray-300 rounded-lg px-2 py-1 hover:bg-zinc-400">
                             <span>Practice</span>
                         </button>
                     </li>
@@ -55,12 +60,21 @@
             </div>
 
             <div id="overlay" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                <div id="aboutDialog" class="bg-gray-200 p-6 rounded-md max-w-md flex flex-col items-center justify-center space-y-4 hidden">
+                <div id="aboutDialog" class="bg-gray-200 p-6 rounded-md max-w-3xl flex flex-col items-center justify-center space-y-4 hidden">
                     <h2 class="text-lg font-semibold">About CardMemoryMatrix</h2>
-                    <p class="mt-4 text-gray-800">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.".</p>
+                    <p class="mt-4 text-gray-800">This web app is designed to help you memorise a deck of cards using the powerful Person-Action-Object (PAO) technique.</p>
+                    <p class="mt-4 text-gray-800">Begin by assigning cards with a Person, an Action and an Object. The concept is to create a memorable image that will help you recall the card later. For instance, the Queen of Diamonds may be Rihanna (Person) singing (Action) into a diamond microphone (Object).</p>
+                    <p class="mt-4 text-gray-800">You can practice by drawing one card at a time, placing the PAOs for each card within a <a href="https://artofmemory.com/blog/how-to-build-a-memory-palace/" class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">Memory Palace</a>. Then, when recalling the cards, follow the journey of your Memory Palace and re-associate the images with the cards you are recalling.</p>
+                    <p class="mt-4 text-gray-800">This can then be extended to drawing three cards at a time by combining the different PAOs of the cards and again, placing them on the journey of your Memory Palace to then recount later!</p>
+                    <p class="mt-4 text-gray-800">Begin by creating a deck in the Matrix menu, or editing the PAO Matrix of an existing deck. Once you have a handful of cards added to your deck's Matrix, you can begin practicing. In order to memorise a full deck, you will need to complete a full deck matrix - it may take some time before you settle on a matrix that works for you!</p>
                     <button id="closeAboutBtn" type="button" class="text-white bg-zinc-500 border border-gray-300 rounded-lg px-2 py-1">
                         Let's go!
                     </button>
+
+                    <!-- TODO: revisit About section - basic and simple intro perhaps better
+                         e.g. "CardMemoryMatrix is designed to help user's memorise a deck of cards. It helps if you
+                         are already familiar with the concept of a Memory Palace, if you are not, click here etc.."
+                         then have tooltips or buttons with dialogs with info re the app.-->
                 </div>
             </div>
         </main>
@@ -70,6 +84,5 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>
