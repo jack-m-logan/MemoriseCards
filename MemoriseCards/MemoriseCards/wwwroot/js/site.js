@@ -5,16 +5,14 @@
 
 $("#closeAboutBtn").click(() => {
     $("#aboutDialog").addClass("hidden");
-    $("#overlay").removeClass("fixed");
+    $("#aboutOverlay").removeClass("fixed");
     $("#aboutBtn").removeClass("bg-zinc-600");
-    $("#titleBanner").removeClass("hidden");
 });
 
 $("#aboutBtn").click(() => {
     $("#aboutDialog").removeClass("hidden");
-    $("#overlay").toggleClass("fixed");
+    $("#aboutOverlay").toggleClass("fixed");
     $("#aboutBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
-    $("#titleBanner").addClass("hidden");
 });
 
 $("#practiceBtn").click(() => {
@@ -33,6 +31,14 @@ $(document).click((e) => {
     }
 });
 
-$("#newDeckBtn, #editDeckBtn").click(() => {
-    $("#newDeckBtn, #editDeckBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
+$("#newDeckBtn").click(() => {
+    $("#newDeckOverlay, #newDeckDialog").removeClass("hidden");
+    $("#newDeckOverlay").toggleClass("fixed");
+    $("#newDeckBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
+});
+
+$("#closeNewDeckBtn").click(() => {
+    $("#newDeckDialog").addClass("hidden");
+    $("#newDeckOverlay").removeClass("fixed");
+    $("#newDeckBtn").removeClass("bg-zinc-600");
 });

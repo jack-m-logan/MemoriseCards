@@ -26,7 +26,7 @@
                         </button>
                         <div id="matrixDropdown" class="hidden absolute mt-px border border-gray-300 rounded-lg">
                             <ul class="flex flex-col">
-                                <li class="flex-grow px-2 py-1 text-zinc rounded-t-lg hover:bg-zinc-600"><a href="#">New Deck</a></li>
+                                <li id="newDeckBtn" class="flex-grow px-2 py-1 text-zinc rounded-t-lg hover:bg-zinc-600">New Deck</li>
                                 <li class="flex-grow px-2 py-1 text-zinc rounded-b-lg hover:bg-zinc-600"><a href="#">Edit Deck</a></li>
                             </ul>
                         </div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div id="overlay" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div id="aboutOverlay" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                 <div id="aboutDialog" class="bg-gray-200 p-6 rounded-md max-w-3xl flex flex-col items-center justify-center space-y-4 hidden">
                     <h2 class="text-lg font-semibold">About CardMemoryMatrix</h2>
                     <p class="mt-4 text-gray-800">This web app is designed to help you memorise a deck of cards using the powerful Person-Action-Object (PAO) technique.</p>
@@ -72,9 +72,28 @@
                     </button>
 
                     <!-- TODO: revisit About section - basic and simple intro perhaps better
-                         e.g. "CardMemoryMatrix is designed to help user's memorise a deck of cards. It helps if you
-                         are already familiar with the concept of a Memory Palace, if you are not, click here etc.."
-                         then have tooltips or buttons with dialogs with info re the app.-->
+            e.g. "CardMemoryMatrix is designed to help user's memorise a deck of cards. It helps if you
+            are already familiar with the concept of a Memory Palace, if you are not, click here etc.."
+            then have tooltips or buttons with dialogs with info re the app.-->
+                </div>
+            </div>
+
+            <div id="newDeckOverlay" class="inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+                <div id="newDeckDialog" class="bg-gray-200 p-6 rounded-md max-w-l flex flex-col items-center justify-center space-y-4 hidden">
+                    <h2 class="text-lg font-semibold">New Deck</h2>
+                    <p class="py-4 text-gray-800 max-w-md text-center">Create and name a new deck and then begin assigning your Person-Object-Action images for each card.</p>
+                    <div class="flex items-center">
+                        <label for="nameNewDeck" class="mr-2">Deck name:</label>
+                        <input id="nameNewDeck" type="text" class="p-1"/>
+                    </div>
+                    <div class="flex pt-4">
+                        <button id="createNewDeckBtn" type="button" class="text-white bg-emerald-500 border border-emerald-300 rounded-lg px-2 py-1 mr-2">
+                            Save
+                        </button>
+                        <button id="closeNewDeckBtn" type="button" class="text-white bg-zinc-500 hover:bg-zinc-400 border border-gray-300 rounded-lg px-2 py-1">
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>
