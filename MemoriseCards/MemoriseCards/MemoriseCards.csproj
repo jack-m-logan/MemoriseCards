@@ -13,6 +13,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Data\" />
     <None Remove="Tests\" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
@@ -38,6 +39,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Tests\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
       <UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
