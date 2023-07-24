@@ -12,7 +12,7 @@ public class DeckTests
             .AddJsonFile("appsettings.json")
             .Build();
 
-        var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+        var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING", EnvironmentVariableTarget.Process);
 
         var options = new DbContextOptionsBuilder<MemoriseCardsDbContext>()
             .UseNpgsql(connectionString)

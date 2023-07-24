@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 </head>
 <body class="min-h-screen flex flex-col bg-emerald-900">
     @Html.Partial("_Navbar.cshtml");
@@ -31,14 +34,13 @@
                 </div>
             </div>
 
-            @Html.Partial("_About.cshtml");
+            @Html.Partial("About.cshtml");
 
-            @Html.Partial("_NewDeckDialog.cshtml");
+            @Html.Partial("NewDeckDialog.cshtml");
         </main>
     </div>
     <footer>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

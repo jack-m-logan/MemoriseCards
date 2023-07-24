@@ -1,7 +1,18 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using MemoriseCards.Data;
+using MemoriseCards.Models;
+using dotenv.net;
+using MemoriseCards.Controllers;
+
+DotEnv.Load();
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MemoriseCardsDbContext>();
+//builder.Services.AddScoped<Deck>();
+builder.Services.AddScoped<DeckBuilder>();
+builder.Services.AddScoped<DeckController>();
 
 var app = builder.Build();
 

@@ -26,6 +26,7 @@ namespace MemoriseCards.Models
             _currentDeckId = maxDeckId + 1;
 
             var deck = new Deck(name);
+            deck.Cards = new List<Card>(); // Add this line to initialize the Cards property
 
             _context.Deck.Add(deck);
 
@@ -127,13 +128,13 @@ namespace MemoriseCards.Models
 
                 return maxId;
             }
-            else
+            else 
             {
                 throw new Exception("There was an error retrieving the max ID.");
             }
         }
 
-        private Deck GetDeckById(int deckId)
+        public Deck GetDeckById(int deckId)
         {
             var deck = _context.Deck.Find(deckId);
 

@@ -42,3 +42,27 @@ $("#closeNewDeckBtn").click(() => {
     $("#newDeckOverlay").removeClass("fixed");
     $("#newDeckBtn").removeClass("bg-zinc-600");
 });
+
+$("#createNewDeckBtn").click(() => {
+    const deckName = $("#nameNewDeck").val();
+    const model = { name: deckName };
+    createNewDeck(model);
+});
+
+function createNewDeck(model) {
+    console.log(model);
+
+    $.ajax({
+        url: "/Deck/CreateNewDeck",
+        type: "POST",
+        data: model,
+        success: function (response) {
+            console.log("Deck created successfully!");
+        },
+        error: function (xhr, status, error) {
+            console.error("Error creating deck:", error);
+            console.log(xhr.responseText);    
+        }
+    });
+}
+
