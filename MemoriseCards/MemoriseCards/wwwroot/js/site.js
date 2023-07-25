@@ -3,17 +3,32 @@
     aboutDialog.removeClass("hidden");
 });
 
-$("#closeAboutBtn").click(() => {
-    $("#aboutDialog").addClass("hidden");
-    $("#aboutOverlay").removeClass("fixed");
-    $("#aboutBtn").removeClass("bg-zinc-600");
-});
+const closeDropDown = (button, dropdown) => {
+    $(document).click((e) => {
+        if (!$(e.target).closest(`#${button}`).length) {
+            $(`#${dropdown}`).addClass("hidden");
+            $(`#${button}`).removeClass("bg-zinc-600").addClass("hover:bg-zinc-400");
+        }
+    });
+};
 
-$("#aboutBtn").click(() => {
-    $("#aboutDialog").removeClass("hidden");
-    $("#aboutOverlay").toggleClass("fixed");
-    $("#aboutBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
-});
+const openDialog = (button, dialog, overlay) => {
+    $(`#${button}`).click(() => {
+        $(`#${overlay}, #${dialog}`).removeClass("hidden");
+        $(`#${overlay}`).toggleClass("fixed");
+        $(`#${button}`).toggleClass("bg-zinc-600 hover:bg-zinc-400");
+    });
+};
+
+const closeDialog = (eventButton, closeButton, dialog, overlay) => {
+    $(`#${eventButton}`).click(() => {
+        $(`#${dialog}`).addClass("hidden");
+        $(`#${overlay}`).removeClass("fixed");
+        $(`#${closeButton}`).removeClass("bg-zinc-600");
+    });
+};
+
+closeDropDown("matrixBtn", "matrixDropdown");
 
 $("#practiceBtn").click(() => {
     $("#practiceBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
@@ -24,24 +39,13 @@ $("#matrixBtn").click(() => {
     $("#matrixBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
 });
 
-$(document).click((e) => {
-    if (!$(e.target).closest("#matrixBtn").length) {
-        $("#matrixDropdown").addClass("hidden");
-        $("#matrixBtn").removeClass("bg-zinc-600").addClass("hover:bg-zinc-400");
-    }
-});
+openDialog("aboutBtn", "aboutDialog", "aboutOverlay");
+openDialog("newDeckBtn", "newDeckDialog", "newDeckOverlay");
+openDialog("editDeckBtn", "editDeckDialog", "editDeckOverlay");
 
-$("#newDeckBtn").click(() => {
-    $("#newDeckOverlay, #newDeckDialog").removeClass("hidden");
-    $("#newDeckOverlay").toggleClass("fixed");
-    $("#newDeckBtn").toggleClass("bg-zinc-600 hover:bg-zinc-400");
-});
-
-$("#closeNewDeckBtn").click(() => {
-    $("#newDeckDialog").addClass("hidden");
-    $("#newDeckOverlay").removeClass("fixed");
-    $("#newDeckBtn").removeClass("bg-zinc-600");
-});
+closeDialog("closeNewDeckBtn", "newDeckBtn", "newDeckDialog", "newDeckOverlay");
+closeDialog("closeEditDeckBtn", "editDeckBtn", "editDeckDialog", "editDeckOverlay");
+closeDialog("closeAboutBtn", "aboutBtn", "aboutDialog", "aboutOverlay");
 
 $("#createNewDeckBtn").click(() => {
     const deckName = $("#nameNewDeck").val();
@@ -64,5 +68,4 @@ function createNewDeck(model) {
             console.log(xhr.responseText);    
         }
     });
-}
-
+};
