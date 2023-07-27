@@ -1,10 +1,17 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+    const aboutDialog = $("#aboutDialog");
+    aboutDialog.removeClass("hidden");
+});
 
-// Write your JavaScript code.
+const closeDropDown = (button, dropdown) => {
+    $(document).click((e) => {
+        if (!$(e.target).closest(`#${button}`).length) {
+            $(`#${dropdown}`).addClass("hidden");
+            $(`#${button}`).removeClass("bg-zinc-600").addClass("hover:bg-zinc-400");
+        }
+    });
+};
 
-<<<<<<< Updated upstream
-=======
 const openDialog = (button, dialog, overlay) => {
     $(`#${button}`).click(() => {
         $(`#${overlay}, #${dialog}`).removeClass("hidden");
@@ -86,5 +93,4 @@ $("#editDeckBtn").click(() => {
     populateEditDeckDropdown();
 });
 
-// TODO modularise code, export function, import into scripts for each page
->>>>>>> Stashed changes
+// TODO modularise code, export functions, import into scripts for each page

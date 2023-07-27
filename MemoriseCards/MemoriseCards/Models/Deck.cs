@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MemoriseCards.Models
 {
@@ -10,6 +11,7 @@ namespace MemoriseCards.Models
         public int Id { get; set; }
 
         [StringLength(255)]
+        [Required(ErrorMessage = "Deck name is required.")]
         public string Name { get; set; }
 
         public List<Card> Cards { get; set; }
@@ -26,6 +28,10 @@ namespace MemoriseCards.Models
         {
             Cards = new List<Card>();
             Name = name;
+        }
+
+        public Deck()
+        {
         }
 
         public List<int> Select(Func<Card, int> selector)
