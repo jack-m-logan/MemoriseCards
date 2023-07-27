@@ -2,6 +2,9 @@
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MemoriseCardsDbContext>();
+builder.Services.AddScoped<DeckBuilder>();
+builder.Services.AddScoped<DeckController>();
 
 var app = builder.Build();
 

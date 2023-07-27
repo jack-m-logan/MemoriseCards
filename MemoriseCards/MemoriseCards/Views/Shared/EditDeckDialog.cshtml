@@ -1,0 +1,24 @@
+﻿@model Deck
+
+<div id="editDeckOverlay" class="inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div id="editDeckDialog" class="bg-gray-200 p-6 rounded-md max-w-md flex flex-col items-center justify-center space-y-4 hidden">
+        <h2 class="text-2xl font-semibold">Edit Deck</h2>
+        @*<p class="py-4 text-gray-800 max-w-md text-center">Select a deck to edit.</p>*@
+        <form id="editDeckForm" asp-controller="" asp-action="" method="get" data-ajax="true" data-ajax-method="GET" data-ajax-update="#editDeckDialog">
+            <div class="flex items-center space-x-2 pb-4">
+                <label for="editDeckDropDown" class="text-base font-medium">Select deck:</label>
+                <select id="editDeckDropDown" class="p-1 border border-gray-300 rounded-lg">
+                    <!-- The options will be populated dynamically using JavaScript -->
+                </select>
+            </div>
+            <div class="flex justify-center pt-4">
+                <button id="editDeckBtn" type="submit" class="text-white bg-emerald-500 border border-emerald-300 rounded-lg px-4 py-1 mr-2">
+                    OK
+                </button>
+                <button id="closeEditDeckBtn" type="button" class="text-white bg-zinc-500 hover:bg-zinc-400 border border-gray-300 rounded-lg px-4 py-1">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

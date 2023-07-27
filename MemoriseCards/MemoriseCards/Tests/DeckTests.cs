@@ -163,6 +163,7 @@ public class DeckTests
         var shuffled = builder.ShuffleDeck(deck.Id);
         var cards = new List<Card>();
 
+        // Act
         // Draw three cards and add them to the review pile
         for (int i = 0; i < 3; i++)
         {
@@ -184,5 +185,45 @@ public class DeckTests
             card => Assert.Equal(card, returnedCards[0]),
             card => Assert.Equal(card, returnedCards[1]),
             card => Assert.Equal(card, returnedCards[2]));
+    }
+
+    [Fact]
+    public void TestGetAllDecks()
+    {
+        // Arrange
+        var builder = DeckBuilder();
+
+        // Act
+        var decks = builder.getAllDecks();
+
+        // Assert
+        Assert.NotNull(decks);
+        decks.ForEach(deck =>
+        {
+            Assert.Equal(52, deck.Cards.Count);
+        });
+    }
+
+    [Fact]
+    public void TestGetDecksByUserId()
+    {
+        // Arrange
+        var builder = DeckBuilder();
+
+        // Act
+        var decks = builder.GetDecksByUserId();
+        var deck = builder.CreateNewDeck("TestGetDecksByUserId", 666);
+
+        // TODO
+        // Add additional Deck class constructor to take in userId
+        // Modify existing tests and DeckBuilder methods to take in userId
+
+        // Assert
+        Assert.NotNull(decks);
+        decks.ForEach(deck =>
+        {
+            Assert.Equal(52, deck.Cards.Count);
+            Assert.Equal(userId, deck.UserId);
+        });
     }
 }
