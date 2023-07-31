@@ -35,8 +35,12 @@ namespace MemoriseCards.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("OriginalPosition")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("POAId")
+                        .HasMaxLength(255)
                         .HasColumnType("integer")
-                        .HasColumnName("OriginalPosition");
+                        .HasColumnName("POAId");
 
                     b.Property<string>("Rank")
                         .IsRequired()
@@ -57,6 +61,9 @@ namespace MemoriseCards.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DeckId");
+
+                    b.HasIndex("POAId")
+                        .IsUnique();
 
                     b.HasIndex("Id", "Suit", "Rank")
                         .IsUnique();
@@ -85,7 +92,6 @@ namespace MemoriseCards.Migrations
                         .HasColumnName("Notes");
 
                     b.Property<int?>("UserId")
-                        .IsRequired()
                         .HasColumnType("integer")
                         .HasColumnName("UserId");
 
@@ -110,9 +116,6 @@ namespace MemoriseCards.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("Action");
-
-                    b.Property<int?>("CardID")
-                        .HasColumnType("integer");
 
                     b.Property<int>("CardId")
                         .HasColumnType("integer")
@@ -261,6 +264,12 @@ namespace MemoriseCards.Migrations
                     b.HasOne("MemoriseCards.Models.Deck", null)
                         .WithMany("Cards")
                         .HasForeignKey("DeckId");
+
+                    b.HasOne("MemoriseCards.Models.POA", "POA")
+                        .WithOne()
+                        .HasForeignKey("MemoriseCards.Models.Card", "POAId");
+
+                    b.Navigation("POA");
                 });
 
             modelBuilder.Entity("MemoriseCards.Models.Deck", b =>
@@ -268,8 +277,7 @@ namespace MemoriseCards.Migrations
                     b.HasOne("MemoriseCards.Models.User", "User")
                         .WithMany("Decks")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });

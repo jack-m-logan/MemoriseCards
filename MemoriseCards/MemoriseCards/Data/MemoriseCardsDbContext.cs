@@ -79,7 +79,7 @@ namespace MemoriseCards.Data
                 entity.Property(e => e.Id).HasColumnName("Id").IsRequired().ValueGeneratedOnAdd();
                 entity.Property(e => e.Name).HasColumnName("Name").HasMaxLength(255);
                 entity.Property(e => e.Notes).HasColumnName("Notes").HasColumnType("TEXT");
-                entity.Property(e => e.UserId).HasColumnName("UserId").IsRequired();
+                entity.Property(e => e.UserId).HasColumnName("UserId");
                 entity.HasOne(e => e.User)
                       .WithMany(u => u.Decks)
                       .HasForeignKey(e => e.UserId)
