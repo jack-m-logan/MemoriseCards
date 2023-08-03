@@ -12,6 +12,7 @@ namespace MemoriseCards.Tests
     {
         private MemoriseCardsDbContext _context;
         private CardMatrixService _matrixService;
+        private DeckBuilder _deckBuilder;
 
         public CardMatrixServiceTests()
         {
@@ -27,6 +28,7 @@ namespace MemoriseCards.Tests
 
             _context = new MemoriseCardsDbContext(options, configuration);
             _matrixService = new CardMatrixService(_context);
+            _deckBuilder = new DeckBuilder(_context);
         }
 
         [Fact]
@@ -37,17 +39,16 @@ namespace MemoriseCards.Tests
             var obj = "Object";
             var action = "Action";
 
-            var newCard = new Card("Suit", "Rank");
-            _context.Card.Add(newCard);
+            var deck = _deckBuilder.CreateNewDeck("TestCreatePOA");
+            var card = deck.Cards.First();
             _context.SaveChanges();
-            var cardId = newCard.Id;
 
             // Act
-            var createdPOA = _matrixService.CreatePOA(cardId, person, obj, action);
+            var createdPOA = _matrixService.CreatePOA(card.Id, person, obj, action);
 
             // Assert
             Assert.NotNull(createdPOA);
-            Assert.Equal(cardId, createdPOA.CardId);
+            Assert.Equal(card.Id, createdPOA.CardId);
             Assert.Equal(person, createdPOA.Person);
             Assert.Equal(obj, createdPOA.Object);
             Assert.Equal(action, createdPOA.Action);
@@ -57,8 +58,8 @@ namespace MemoriseCards.Tests
         public void TestAddPOAToCard()
         {
             // Arrange
-            var card = new Card("Suit", "Rank");
-            _context.Card.Add(card);
+            var deck = _deckBuilder.CreateNewDeck("TestCreatePOA");
+            var card = deck.Cards.First();
             _context.SaveChanges();
 
             // Act
@@ -73,8 +74,8 @@ namespace MemoriseCards.Tests
         public void TestDeletePOA()
         {
             // Arrange
-            var card = new Card("Suit", "Rank");
-            _context.Card.Add(card);
+            var deck = _deckBuilder.CreateNewDeck("TestCreatePOA");
+            var card = deck.Cards.First();
             _context.SaveChanges();
 
             var poa = new POA(card.Id, "Person1", "Object1", "Action1");
@@ -91,8 +92,8 @@ namespace MemoriseCards.Tests
         public void TestUpdatePOAPerson()
         {
             // Arrange
-            var card = new Card("Suit", "Rank");
-            _context.Card.Add(card);
+            var deck = _deckBuilder.CreateNewDeck("TestCreatePOA");
+            var card = deck.Cards.First();
             _context.SaveChanges();
 
             var originalPOA = new POA(card.Id, "OG Person", "OG Object", "OG Action");
@@ -112,8 +113,8 @@ namespace MemoriseCards.Tests
         public void TestUpdatePOAObject()
         {
             // Arrange
-            var card = new Card("Suit", "Rank");
-            _context.Card.Add(card);
+            var deck = _deckBuilder.CreateNewDeck("TestCreatePOA");
+            var card = deck.Cards.First();
             _context.SaveChanges();
 
             var originalPOA = new POA(card.Id, "OG Person", "OG Object", "OG Action");
@@ -133,8 +134,8 @@ namespace MemoriseCards.Tests
         public void TestUpdatePOAAction()
         {
             // Arrange
-            var card = new Card("Suit", "Rank");
-            _context.Card.Add(card);
+            var deck = _deckBuilder.CreateNewDeck("TestCreatePOA");
+            var card = deck.Cards.First();
             _context.SaveChanges();
 
             var originalPOA = new POA(card.Id, "OG Person", "OG Object", "OG Action");

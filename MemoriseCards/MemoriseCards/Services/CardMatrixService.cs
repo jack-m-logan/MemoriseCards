@@ -86,16 +86,6 @@ namespace MemoriseCards.Models
                 _context.SaveChanges();
             }
         }
-
-        //internal object UpdatePOAObject(Card card, string updatedObject)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //internal object UpdatePOAAction(Card card, string updatedAction)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
 
