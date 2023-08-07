@@ -175,7 +175,7 @@ namespace MemoriseCards.Models
             reviewPileService.AddToReviewPile(card);
         }
 
-        public List<Deck> GetAllDecks()
+        internal List<Deck> GetAllDecks()
         {
             return _context.Deck.ToList();
         }
@@ -185,10 +185,11 @@ namespace MemoriseCards.Models
             return _context.Deck.Where(deck => deck.UserId == userId).ToList();
         }
 
-        //public List<Card> GetAllCardsByDeckId(int deckId)
-        //{
-        //    return _context.Card.Where(c => c.DeckId == deckId);
-        //}
+        internal List<Card> GetCardsByDeckId(int deckId)
+        {
+            return _context.Card.Where(c => c.DeckId == deckId).ToList();
+        }
+
         #endregion
     }
 }

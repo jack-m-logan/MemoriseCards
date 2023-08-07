@@ -251,4 +251,20 @@ public class DeckTests
             Assert.Equal(userId, deck.UserId);
         });
     }
+
+    [Fact]
+    public void TestGetCardsByDeckId()
+    {
+        var builder = DeckBuilder();
+        var deck = builder.CreateNewDeck("TestGetCardsByDeckId");
+
+        var cards = builder.GetCardsByDeckId(deck.Id);
+
+        Assert.NotNull(cards);
+        Assert.Equal(52, cards.Count());
+        Assert.Equal(13, cards.Count(card => card.Suit == "Hearts"));
+        Assert.Equal(13, cards.Count(card => card.Suit == "Spades"));
+        Assert.Equal(13, cards.Count(card => card.Suit == "Diamonds"));
+        Assert.Equal(13, cards.Count(card => card.Suit == "Clubs"));
+    }
 }
