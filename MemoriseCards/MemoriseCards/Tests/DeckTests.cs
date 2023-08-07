@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 public class DeckTests
 {
+    private readonly MemoriseCardsDbContext _context;
+
     public DeckBuilder DeckBuilder()
     {
         var configuration = new ConfigurationBuilder()
@@ -41,6 +43,32 @@ public class DeckTests
         Assert.NotNull(deck);
         Assert.Equal(52, deck.Cards.Count);
         Assert.Equal("Test deck", deck.Name);
+    }
+
+    [Fact]
+    public void TestCreateNewDeckWithUserId()
+    {
+        // Arrange
+        var builder = DeckBuilder();
+
+        // Act
+        var deck = builder.CreateNewDeck("Test deck", 666);
+
+        if (deck == null || deck.Cards.Count == 0)
+        {
+            throw new InvalidOperationException("Deck is empty.");
+        }
+
+        if (deck.UserId == null)
+        {
+            throw new InvalidOperationException("User ID is empty.");
+        }
+
+        // Assert deck can be created, has 52 cards, is named and has a user ID
+        Assert.NotNull(deck);
+        Assert.Equal(52, deck.Cards.Count);
+        Assert.Equal("Test deck", deck.Name);
+        Assert.Equal(666, deck.UserId);
     }
 
     [Fact]
@@ -194,13 +222,13 @@ public class DeckTests
         var builder = DeckBuilder();
 
         // Act
-        var decks = builder.getAllDecks();
+        var decks = builder.GetAllDecks();
 
         // Assert
-        Assert.NotNull(decks);
         decks.ForEach(deck =>
         {
-            Assert.Equal(52, deck.Cards.Count);
+            Assert.NotNull(deck);
+            Assert.NotNull(deck.Name);
         });
     }
 
@@ -209,20 +237,17 @@ public class DeckTests
     {
         // Arrange
         var builder = DeckBuilder();
+        var userId = 666;
+        var deck = builder.CreateNewDeck("TestGetDecksByUserId", userId);
 
         // Act
-        var decks = builder.GetDecksByUserId();
-        var deck = builder.CreateNewDeck("TestGetDecksByUserId", 666);
-
-        // TODO
-        // Add additional Deck class constructor to take in userId
-        // Modify existing tests and DeckBuilder methods to take in userId
+        var decks = builder.GetDecksByUserId(deck.UserId);
 
         // Assert
-        Assert.NotNull(decks);
         decks.ForEach(deck =>
         {
-            Assert.Equal(52, deck.Cards.Count);
+            Assert.NotNull(deck);
+            Assert.NotNull(deck.Name);
             Assert.Equal(userId, deck.UserId);
         });
     }

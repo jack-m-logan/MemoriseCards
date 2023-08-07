@@ -20,13 +20,13 @@ namespace MemoriseCards.Models
             reviewPileService = new ReviewCardsService();
         }
 
-        public Deck CreateNewDeck(string name)
+        public Deck CreateNewDeck(string name, int? userId = null)
         {
-            int maxDeckId = GetMaxId(_context, "Deck");
-            _currentDeckId = maxDeckId + 1;
+            //int maxDeckId = GetMaxId(_context, "Deck");
+            //_currentDeckId = maxDeckId + 1;
 
-            var deck = new Deck(name);
-            deck.Cards = new List<Card>(); // Add this line to initialize the Cards property
+            var deck = userId != null ? new Deck(name, userId, _context) : new Deck(name);
+            deck.Cards = new List<Card>();
 
             _context.Deck.Add(deck);
 
@@ -175,6 +175,20 @@ namespace MemoriseCards.Models
             reviewPileService.AddToReviewPile(card);
         }
 
+        public List<Deck> GetAllDecks()
+        {
+            return _context.Deck.ToList();
+        }
+
+        internal List<Deck> GetDecksByUserId(int? userId)
+        {
+            return _context.Deck.Where(deck => deck.UserId == userId).ToList();
+        }
+
+        //public List<Card> GetAllCardsByDeckId(int deckId)
+        //{
+        //    return _context.Card.Where(c => c.DeckId == deckId);
+        //}
         #endregion
     }
 }

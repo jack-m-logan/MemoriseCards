@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MemoriseCards.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace MemoriseCards.Models
 {
@@ -24,6 +26,17 @@ namespace MemoriseCards.Models
         [ForeignKey("UserId")]
         public User? User { get; set; }
 
+        private readonly MemoriseCardsDbContext _context;
+
+        public Deck(string name, int? userId, MemoriseCardsDbContext context)
+        {
+            Cards = new List<Card>();
+            Name = name;
+            UserId = userId;
+            _context = context;
+            User = GetUserFromUserId(context);
+        }
+
         public Deck(string name)
         {
             Cards = new List<Card>();
@@ -43,5 +56,20 @@ namespace MemoriseCards.Models
             }
             return result;
         }
+
+        private User? GetUserFromUserId(MemoriseCardsDbContext context)
+        {
+            if (UserId.HasValue)
+            {
+                return context.User.Find(UserId.Value);
+            }
+
+            return null;
+        }
+
+        //private void LoadCards()
+        //{
+        //    Cards = _context.Card.Where(card => card.DeckId == Id).ToList();
+        //}
     }
 }

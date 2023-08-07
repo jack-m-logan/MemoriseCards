@@ -23,10 +23,6 @@ namespace MemoriseCards.Models
 
         [ForeignKey("DeckId")]
         public int DeckId { get; set; }
-        // TODO establish where the FK between Card_Deck_DeckId came from
-        // and why it's no longer represented in the code
-        // Note the POA tests are failing when this code is uncommented.
-        // Need to get DeckId present in order to retrieve the Cards for each Deck
 
         public float TotalCardScore { get; set; }
 
