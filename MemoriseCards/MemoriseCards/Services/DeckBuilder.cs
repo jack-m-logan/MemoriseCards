@@ -175,9 +175,9 @@ namespace MemoriseCards.Models
             reviewPileService.AddToReviewPile(card);
         }
 
-        internal List<Deck> GetAllDecks()
+        internal List<Deck> GetAllDecksForGuestUser()
         {
-            return _context.Deck.ToList();
+            return _context.Deck.Where(deck => deck.UserId == null).ToList();
         }
 
         internal List<Deck> GetDecksByUserId(int? userId)

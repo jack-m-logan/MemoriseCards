@@ -216,19 +216,20 @@ public class DeckTests
     }
 
     [Fact]
-    public void TestGetAllDecks()
+    public void TestGetAllDecksForGuestUser()
     {
         // Arrange
         var builder = DeckBuilder();
 
         // Act
-        var decks = builder.GetAllDecks();
+        var decks = builder.GetAllDecksForGuestUser();
 
         // Assert
         decks.ForEach(deck =>
         {
             Assert.NotNull(deck);
             Assert.NotNull(deck.Name);
+            Assert.Null(deck.UserId);
         });
     }
 

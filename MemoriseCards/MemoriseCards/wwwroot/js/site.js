@@ -89,8 +89,12 @@ function populateEditDeckDropdown() {
     });
 };
 
-$("#editDeckBtn").click(() => {
+function loadEditDecksList() {
     populateEditDeckDropdown();
-});
+}
+
+window.onload = function () {
+    loadEditDecksList();
+};
 
 // TODO modularise code, export functions, import into scripts for each page
